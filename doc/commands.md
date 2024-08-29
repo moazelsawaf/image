@@ -449,7 +449,7 @@ void copyResize({ int? width, int? height,
 
 void copyResizeCropSquare({ required int size,
   Interpolation interpolation = Interpolation.nearest,
-  num radius = 0});
+  num radius = 0, Color? backgroundColor});
 
 void copyRotate({ required num angle,
   Interpolation interpolation = Interpolation.nearest });

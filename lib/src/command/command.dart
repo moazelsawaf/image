@@ -1134,12 +1134,14 @@ class Command {
       {required int size,
       num radius = 0,
       Interpolation interpolation = Interpolation.nearest,
-      bool antialias = true}) {
+      bool antialias = true,
+      Color? backgroundColor}) {
     subCommand = CopyResizeCropSquareCmd(subCommand,
         size: size,
         radius: radius,
         interpolation: interpolation,
-        antialias: antialias);
+        antialias: antialias,
+        backgroundColor: backgroundColor);
   }
 
   void copyRotate(

@@ -101,7 +101,7 @@ as the padding color.
 ### [copyResizeCropSquare](https://pub.dev/documentation/image/latest/image/copyResizeCropSquare.html)
 
 ```dart
-Image copyResizeCropSquare(Image src, { required int size, num radius = 1, Interpolation interpolation = Interpolation.nearest })
+Image copyResizeCropSquare(Image src, { required int size, num radius = 1, Interpolation interpolation = Interpolation.nearest, Color? backgroundColor })
 ```
 
 The radius argument is used to round the corners of the crop. Returns a new Image.

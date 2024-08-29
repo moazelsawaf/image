@@ -1,7 +1,9 @@
 import 'dart:typed_data';
 
+import '../color/color.dart';
 import '../image/image.dart';
 import '../image/interpolation.dart';
+import '../image/pixel.dart';
 import '../util/_circle_test.dart';
 import '../util/image_exception.dart';
 
@@ -10,7 +12,21 @@ Image copyResizeCropSquare(Image src,
     {required int size,
     Interpolation interpolation = Interpolation.nearest,
     num radius = 0,
-    bool antialias = false}) {
+    bool antialias = false,
+    Color? backgroundColor}) {
+  void setPixelRgba(Pixel pixel) {
+    if (backgroundColor != null) {
+      pixel.setRgba(
+        backgroundColor.r,
+        backgroundColor.g,
+        backgroundColor.b,
+        backgroundColor.a,
+      );
+    } else {
+      pixel.setRgba(0, 0, 0, 0);
+    }
+  }
+
   if (size <= 0) {
     throw ImageException('Invalid size');
   }
@@ -76,25 +92,26 @@ Image copyResizeCropSquare(Image src,
         if (px < c1x && py < c1y) {
           a = circleTest(p, c1x, c1y, rad2, antialias: antialias);
           if (a == 0) {
-            p.setRgba(0, 0, 0, 0);
+            setPixelRgba(p);
+
             continue;
           }
         } else if (px > c2x && py < c2y) {
           a = circleTest(p, c2x, c2y, rad2, antialias: antialias);
           if (a == 0) {
-            p.setRgba(0, 0, 0, 0);
+            setPixelRgba(p);
             continue;
           }
         } else if (px > c3x && py > c3y) {
           a = circleTest(p, c3x, c3y, rad2, antialias: antialias);
           if (a == 0) {
-            p.setRgba(0, 0, 0, 0);
+            setPixelRgba(p);
             continue;
           }
         } else if (px < c4x && py > c4y) {
           a = circleTest(p, c4x, c4y, rad2, antialias: antialias);
           if (a == 0) {
-            p.setRgba(0, 0, 0, 0);
+            setPixelRgba(p);
             continue;
           }
         }
