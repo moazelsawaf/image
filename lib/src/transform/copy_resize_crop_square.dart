@@ -15,16 +15,18 @@ Image copyResizeCropSquare(Image src,
     bool antialias = false,
     Color? backgroundColor}) {
   void setPixelRgba(Pixel pixel) {
-    if (backgroundColor != null) {
-      pixel.setRgba(
-        backgroundColor.r,
-        backgroundColor.g,
-        backgroundColor.b,
-        backgroundColor.a,
-      );
-    } else {
-      pixel.setRgba(0, 0, 0, 0);
-    }
+    try {
+      if (backgroundColor != null) {
+        pixel.setRgba(
+          backgroundColor.r,
+          backgroundColor.g,
+          backgroundColor.b,
+          backgroundColor.a,
+        );
+      } else {
+        pixel.setRgba(0, 0, 0, 0);
+      }
+    } catch (e) {}
   }
 
   if (size <= 0) {
